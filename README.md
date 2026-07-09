@@ -1,6 +1,26 @@
 # sooth/homebrew-tap
 
-Homebrew tap for [Simple Meeting Recorder](https://simplemeetingrecorder.dmalson.com/) and related apps.
+Homebrew tap for [Simple Meeting Recorder](https://simplemeetingrecorder.dmalson.com/),
+[CalSync](https://sync365cal.com/), and related apps.
+
+## Install CalSync
+
+Apple Silicon Mac, macOS 13 (Ventura) or later:
+
+```bash
+brew install --cask sooth/tap/calsync
+```
+
+Or:
+
+```bash
+brew tap sooth/tap
+brew install --cask calsync
+```
+
+The app lands in `/Applications`. After install it keeps itself current via Sparkle
+(in-app updates). On first launch it registers as a login item and starts the
+menu-bar sync client.
 
 ## Install Simple Meeting Recorder
 
@@ -45,11 +65,13 @@ The app lands in `/Applications`. After install it keeps itself current via Spar
 ## Uninstall
 
 ```bash
+brew uninstall --cask calsync
 brew uninstall --cask simple-meeting-recorder
 ```
 
-Preferences only (does not delete `~/Recordings`):
+Preferences only (does not delete user data under Application Support / Recordings):
 
 ```bash
+brew uninstall --cask --zap calsync
 brew uninstall --cask --zap simple-meeting-recorder
 ```
