@@ -4,21 +4,19 @@ cask "simple-meeting-recorder" do
 
   url "https://simplemeetingrecorder.dmalson.com/releases/SimpleMeetingRecorder-#{version}.zip"
   name "Simple Meeting Recorder"
-  desc "On-device meeting recorder and transcript for the Mac menu bar"
+  desc "On-device meeting recorder and transcript for the menu bar"
   homepage "https://simplemeetingrecorder.dmalson.com/"
 
   livecheck do
     url "https://simplemeetingrecorder.dmalson.com/appcast.xml"
-    strategy :sparkle
+    strategy :sparkle, &:short_version
   end
 
   auto_updates true
-  depends_on macos: ">= :sequoia"
+  depends_on macos: :sequoia
   depends_on arch: :arm64
 
   app "SimpleMeetingRecorder.app"
 
-  zap trash: [
-    "~/Library/Preferences/com.davidmalson.SimpleMeetingRecorder.plist",
-  ]
+  zap trash: "~/Library/Preferences/com.davidmalson.SimpleMeetingRecorder.plist"
 end
