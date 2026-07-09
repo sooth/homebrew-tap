@@ -22,6 +22,10 @@ The app lands in `/Applications`. After install it keeps itself current via Spar
 (in-app updates). On first launch it registers as a login item and starts the
 menu-bar sync client.
 
+Binary downloads for the cask come from the public releases repo
+[`sooth/simple-meeting-recorder-releases`](https://github.com/sooth/simple-meeting-recorder-releases)
+(application source remains private).
+
 ## Install Simple Meeting Recorder
 
 Apple Silicon Mac, macOS 15 (Sequoia) or later. **Use the fully-qualified name** (this is not in official `homebrew/cask`):
@@ -47,8 +51,6 @@ Use the fully-qualified form instead (above), or:
 brew tap sooth/tap
 brew install --cask sooth/tap/simple-meeting-recorder
 ```
-
-On Homebrew 6 with tap trust, prefer the fully-qualified install; it avoids “cask not found” from an untrusted short-name lookup.
 
 ### Optional: trust the whole tap (or just this cask)
 

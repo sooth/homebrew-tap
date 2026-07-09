@@ -2,7 +2,7 @@ cask "simple-meeting-recorder" do
   version "1.6"
   sha256 "3579a01cf262fbbdcf95cef9bc23748662c28d029c64e859913eb1ae17b7d8d4"
 
-  url "https://simplemeetingrecorder.dmalson.com/releases/SimpleMeetingRecorder-#{version}.zip"
+  url "https://github.com/sooth/simple-meeting-recorder-releases/releases/download/v#{version}/SimpleMeetingRecorder-#{version}.zip"
   name "Simple Meeting Recorder"
   desc "On-device meeting recorder and transcript for the menu bar"
   homepage "https://simplemeetingrecorder.dmalson.com/"
