@@ -38,10 +38,17 @@ That one command taps `sooth/homebrew-tap` and installs the cask. On Homebrew 6+
 
 ### Beta channel
 
-Prereleases (new features before they hit stable). Same `.app` name — conflicts with the stable cask (install one or the other):
+Prereleases (new features before they hit stable). Same `.app` path as stable — **install replaces the other channel** (no manual uninstall):
 
 ```bash
+brew update
 brew install --cask sooth/tap/simple-meeting-recorder@beta
+```
+
+Switch back to stable the same way:
+
+```bash
+brew install --cask sooth/tap/simple-meeting-recorder
 ```
 
 Upgrade when a new beta is published:

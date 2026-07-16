@@ -13,9 +13,26 @@ cask "simple-meeting-recorder" do
   end
 
   auto_updates true
-  conflicts_with cask: "simple-meeting-recorder@beta"
   depends_on macos: :sequoia
   depends_on arch: :arm64
+
+  # Same .app path as the beta cask. Auto-replace so switching back to stable
+  # is a single brew install (no manual uninstall).
+  preflight do
+    other = "simple-meeting-recorder@beta"
+    other_room = HOMEBREW_PREFIX/"Caskroom"/other
+    this_room = HOMEBREW_PREFIX/"Caskroom/simple-meeting-recorder"
+    app = Pathname("/Applications/SimpleMeetingRecorder.app")
+
+    if other_room.directory?
+      ohai "Switching to stable: removing beta cask #{other}"
+      FileUtils.rm_rf(app) if app.exist?
+      FileUtils.rm_rf(other_room)
+    elsif app.exist? && !this_room.directory?
+      ohai "Removing existing #{app.basename} so stable can install"
+      FileUtils.rm_rf(app)
+    end
+  end
 
   app "SimpleMeetingRecorder.app"
 
