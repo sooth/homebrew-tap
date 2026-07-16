@@ -36,6 +36,21 @@ brew install --cask sooth/tap/simple-meeting-recorder
 
 That one command taps `sooth/homebrew-tap` and installs the cask. On Homebrew 6+ it also trusts only this cask for the install.
 
+### Beta channel
+
+Prereleases (new features before they hit stable). Same `.app` name — conflicts with the stable cask (install one or the other):
+
+```bash
+brew install --cask sooth/tap/simple-meeting-recorder@beta
+```
+
+Upgrade when a new beta is published:
+
+```bash
+brew update
+brew upgrade --cask sooth/tap/simple-meeting-recorder@beta
+```
+
 ### If you see “No Cask with this name exists”
 
 You almost certainly ran the **short** name without the tap:
@@ -51,6 +66,8 @@ Use the fully-qualified form instead (above), or:
 brew tap sooth/tap
 brew install --cask sooth/tap/simple-meeting-recorder
 ```
+
+On Homebrew 6 with tap trust, prefer the fully-qualified install; it avoids “cask not found” from an untrusted short-name lookup.
 
 ### Optional: trust the whole tap (or just this cask)
 
@@ -69,6 +86,8 @@ The app lands in `/Applications`. After install it keeps itself current via Spar
 ```bash
 brew uninstall --cask calsync
 brew uninstall --cask simple-meeting-recorder
+# or, if on the beta channel:
+brew uninstall --cask simple-meeting-recorder@beta
 ```
 
 Preferences only (does not delete user data under Application Support / Recordings):
@@ -76,4 +95,6 @@ Preferences only (does not delete user data under Application Support / Recordin
 ```bash
 brew uninstall --cask --zap calsync
 brew uninstall --cask --zap simple-meeting-recorder
+brew uninstall --cask --zap simple-meeting-recorder@beta
 ```
+
