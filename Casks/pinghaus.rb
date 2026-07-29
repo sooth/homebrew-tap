@@ -12,15 +12,13 @@ cask "pinghaus" do
 
   app "Pinghaus.app"
 
-  # Manual / non-cask installs leave Pinghaus.app in /Applications; clear so brew can land.
+  # Clear a manual / non-cask install so brew can land (same .app path).
   preflight do
-    this_room = HOMEBREW_PREFIX/"Caskroom/pinghaus"
     app = Pathname("/Applications/Pinghaus.app")
+    next unless app.exist?
 
-    if app.exist? && !this_room.directory?
-      ohai "Removing existing #{app.basename} so Homebrew can install"
-      FileUtils.rm_r(app)
-    end
+    ohai "Removing existing #{app.basename} so Homebrew can install"
+    FileUtils.rm_r(app)
   end
 
   zap trash: [
