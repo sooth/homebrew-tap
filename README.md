@@ -1,7 +1,25 @@
 # sooth/homebrew-tap
 
 Homebrew tap for [Simple Meeting Recorder](https://simplemeetingrecorder.dmalson.com/),
-[CalSync](https://sync365cal.com/), and related apps.
+[CalSync](https://sync365cal.com/), [Pinghaus](https://pinghaus.dmalson.com/),
+[Clientry](https://clientry.dmalson.com/), and related apps.
+
+## Install Pinghaus
+
+Self-hosted push client (Apple Silicon, macOS 26 / Tahoe or later). **Use the fully-qualified name:**
+
+```bash
+brew install --cask sooth/tap/pinghaus
+```
+
+Upgrade after a new release:
+
+```bash
+brew update
+brew upgrade --cask sooth/tap/pinghaus
+```
+
+Binaries are notarized zips from [pinghaus.dmalson.com/releases](https://pinghaus.dmalson.com/releases/).
 
 ## Install CalSync
 
