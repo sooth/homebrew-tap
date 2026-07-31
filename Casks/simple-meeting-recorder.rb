@@ -16,12 +16,12 @@ cask "simple-meeting-recorder" do
   depends_on macos: :sequoia
   depends_on arch: :arm64
 
-  # Prefer user Applications (no admin). Override with --appdir if needed.
+  # Prefer user Applications (no admin password):
   #   brew install --cask --appdir=~/Applications sooth/tap/simple-meeting-recorder
+  # Once installed that way, upgrades stay in ~/Applications without sudo.
   app "SimpleMeetingRecorder.app"
 
-  # Same .app path as the beta cask. Auto-replace so switching back to stable
-  # is a single brew install (no manual uninstall).
+  # Same .app basename as the beta cask. Auto-replace so channel switch is one command.
   preflight do
     other = "simple-meeting-recorder@beta"
     other_room = HOMEBREW_PREFIX/"Caskroom"/other
@@ -33,22 +33,25 @@ cask "simple-meeting-recorder" do
 
     if other_room.directory?
       ohai "Switching to stable: removing beta cask #{other}"
-      candidates.each { |app| FileUtils.rm_r(app) if app.exist? }
+      candidates.each { |p| FileUtils.rm_r(p) if p.exist? }
       FileUtils.rm_r(other_room)
     elsif !this_room.directory?
       orphan = candidates.find(&:exist?)
       if orphan
-        ohai "Removing existing #{orphan.basename} so stable can install"
+        ohai "Removing existing #{orphan} so stable can install"
         FileUtils.rm_r(orphan)
       end
     end
   end
 
+  zap trash: "~/Library/Preferences/com.davidmalson.SimpleMeetingRecorder.plist"
+
   caveats <<~EOS
-    Installs without an admin password if you target your user Applications folder:
+    To avoid administrator passwords, install into your user Applications folder:
 
       brew install --cask --appdir=~/Applications sooth/tap/simple-meeting-recorder
-  EOS
 
-  zap trash: "~/Library/Preferences/com.davidmalson.SimpleMeetingRecorder.plist"
+    If an old copy is still in /Applications, remove it once (may ask for a password),
+    then reinstall with --appdir=~/Applications as above.
+  EOS
 end
