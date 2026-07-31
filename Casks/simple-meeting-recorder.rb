@@ -16,6 +16,8 @@ cask "simple-meeting-recorder" do
   depends_on macos: :sequoia
   depends_on arch: :arm64
 
+  app "SimpleMeetingRecorder.app"
+
   # Same .app path as the beta cask. Auto-replace so switching back to stable
   # is a single brew install (no manual uninstall).
   preflight do
@@ -26,15 +28,13 @@ cask "simple-meeting-recorder" do
 
     if other_room.directory?
       ohai "Switching to stable: removing beta cask #{other}"
-      FileUtils.rm_rf(app) if app.exist?
-      FileUtils.rm_rf(other_room)
+      FileUtils.rm_r(app) if app.exist?
+      FileUtils.rm_r(other_room)
     elsif app.exist? && !this_room.directory?
       ohai "Removing existing #{app.basename} so stable can install"
-      FileUtils.rm_rf(app)
+      FileUtils.rm_r(app)
     end
   end
-
-  app "SimpleMeetingRecorder.app"
 
   zap trash: "~/Library/Preferences/com.davidmalson.SimpleMeetingRecorder.plist"
 end
