@@ -24,18 +24,26 @@ cask "simple-meeting-recorder@beta" do
     other = "simple-meeting-recorder"
     other_room = HOMEBREW_PREFIX/"Caskroom"/other
     this_room = HOMEBREW_PREFIX/"Caskroom/simple-meeting-recorder@beta"
-    app = Pathname("/Applications/SimpleMeetingRecorder.app")
+    candidates = [
+      Pathname.new(Dir.home)/"Applications/SimpleMeetingRecorder.app",
+      Pathname("/Applications/SimpleMeetingRecorder.app"),
+    ]
 
     if other_room.directory?
       ohai "Switching to beta: removing stable cask #{other}"
-      FileUtils.rm_rf(app) if app.exist?
-      FileUtils.rm_rf(other_room)
-    elsif app.exist? && !this_room.directory?
-      ohai "Removing existing #{app.basename} so beta can install"
-      FileUtils.rm_rf(app)
+      candidates.each { |app| FileUtils.rm_r(app) if app.exist? }
+      FileUtils.rm_r(other_room)
+    elsif !this_room.directory?
+      orphan = candidates.find(&:exist?)
+      if orphan
+        ohai "Removing existing #{orphan.basename} so beta can install"
+        FileUtils.rm_r(orphan)
+      end
     end
   end
 
+  # Prefer user Applications (no admin):
+  #   brew install --cask --appdir=~/Applications sooth/tap/simple-meeting-recorder@beta
   app "SimpleMeetingRecorder.app"
 
   zap trash: "~/Library/Preferences/com.davidmalson.SimpleMeetingRecorder.plist"
