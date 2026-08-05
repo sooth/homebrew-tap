@@ -1,6 +1,6 @@
 cask "calsync" do
-  version "1.21.1"
-  sha256 "944b91d22f6a8070ded60fc85d9e821dce045ffe438d52b642225de718db020d"
+  version "1.21.2"
+  sha256 "9f67fc240da64e167af346e27b70acdf6560ceeb7d26814054cf468dab6f417f"
 
   url "https://sync365cal.com/releases/CalSync-#{version}.zip"
   name "CalSync"
