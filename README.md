@@ -20,7 +20,7 @@ extractor login
 extractor mail --days 7
 ```
 
-Binaries are notarized zips from [extractor.dmalson.com/releases](https://extractor.dmalson.com/releases/). Upgrade after a new release:
+Binaries are notarized zips from [GitHub Releases](https://github.com/sooth/extractor-releases/releases) (same bytes as [extractor.dmalson.com/releases](https://extractor.dmalson.com/releases/)). Upgrade after a new release:
 
 ```bash
 brew update

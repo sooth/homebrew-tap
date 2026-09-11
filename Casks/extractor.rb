@@ -2,7 +2,7 @@ cask "extractor" do
   version "0.1.0"
   sha256 "1d77ebdb511bd520b36f2394340d6410be4071167af87130df203e436ebe8943"
 
-  url "https://extractor.dmalson.com/releases/Extractor-#{version}.zip"
+  url "https://github.com/sooth/extractor-releases/releases/download/v#{version}/Extractor-#{version}.zip"
   name "Extractor"
   desc "Archive Outlook mail and Teams chats from a signed-in session"
   homepage "https://extractor.dmalson.com/"
