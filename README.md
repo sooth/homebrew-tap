@@ -3,7 +3,23 @@
 Homebrew tap for [Simple Meeting Recorder](https://simplemeetingrecorder.dmalson.com/),
 [CalSync](https://sync365cal.com/), [Pinghaus](https://pinghaus.dmalson.com/),
 [Clientry](https://clientry.dmalson.com/), [Extractor](https://extractor.dmalson.com/),
+[Frame](https://frame.dmalson.com/),
 and related apps.
+
+## Install Frame
+
+Native window manager (Apple Silicon, macOS 26 / Tahoe or later). **Use the fully-qualified name:**
+
+```bash
+brew install --cask sooth/tap/frame
+```
+
+Grant Accessibility when prompted. After install it keeps itself current via Sparkle (in-app updates). Binaries are notarized zips from [frame.dmalson.com/releases](https://frame.dmalson.com/releases/).
+
+```bash
+brew update
+brew upgrade --cask sooth/tap/frame
+```
 
 ## Install Extractor
 
@@ -135,6 +151,7 @@ The app lands in `/Applications`. After install it keeps itself current via Spar
 ```bash
 brew uninstall --cask extractor
 brew uninstall --cask calsync
+brew uninstall --cask frame
 brew uninstall --cask simple-meeting-recorder
 # or, if on the beta channel:
 brew uninstall --cask simple-meeting-recorder@beta
@@ -145,6 +162,7 @@ Preferences only (does not delete user data under Application Support / Recordin
 ```bash
 brew uninstall --cask --zap extractor
 brew uninstall --cask --zap calsync
+brew uninstall --cask --zap frame
 brew uninstall --cask --zap simple-meeting-recorder
 brew uninstall --cask --zap simple-meeting-recorder@beta
 ```
