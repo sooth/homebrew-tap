@@ -1,6 +1,6 @@
 cask "extractor" do
-  version "0.1.0"
-  sha256 "1d77ebdb511bd520b36f2394340d6410be4071167af87130df203e436ebe8943"
+  version "0.1.1"
+  sha256 "f63c73b07f24837d6ece8f1ff80d51484a792b904420fe3354df4cf29a9b3414"
 
   url "https://github.com/sooth/extractor-releases/releases/download/v#{version}/Extractor-#{version}.zip"
   name "Extractor"
