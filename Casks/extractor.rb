@@ -1,6 +1,6 @@
 cask "extractor" do
-  version "0.1.1"
-  sha256 "f63c73b07f24837d6ece8f1ff80d51484a792b904420fe3354df4cf29a9b3414"
+  version "0.1.2"
+  sha256 "7116c24b41c392654f850c1a080b093d8e51eee730dfe158844facfdd4692730"
 
   url "https://github.com/sooth/extractor-releases/releases/download/v#{version}/Extractor-#{version}.zip"
   name "Extractor"
@@ -32,6 +32,8 @@ cask "extractor" do
         extractor whoami
         extractor mail --days 7
         extractor teams --days 7
+        extractor teams-poll
+        extractor teams-watch
 
       Mail and chat archives stay in ~/Library/Application Support/MSExtractor/
       and are not removed by brew uninstall --zap.
