@@ -1,6 +1,6 @@
 cask "frame" do
-  version "1.1.2"
-  sha256 "a4fd15f28713f28cee23d86aa1b141c3f69d98c578cd11ba3704e95b01dea171"
+  version "1.2.0"
+  sha256 "e7e70ac349380d76bde829ea62cecf8401f5dd70b49d2e2c48c6b7fd17fc2e13"
 
   url "https://frame.dmalson.com/releases/Frame-#{version}.zip"
   name "Frame"
