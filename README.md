@@ -1,7 +1,7 @@
 # sooth/homebrew-tap
 
 Homebrew tap for [Simple Meeting Recorder](https://simplemeetingrecorder.dmalson.com/),
-[CalSync](https://sync365cal.com/), [Pinghaus](https://pinghaus.dmalson.com/),
+[TenantCal](https://sync365cal.com/), [Pinghaus](https://pinghaus.dmalson.com/),
 [Clientry](https://clientry.dmalson.com/), [Extractor](https://extractor.dmalson.com/),
 [Frame](https://frame.dmalson.com/),
 and related apps.
@@ -61,24 +61,27 @@ brew upgrade --cask sooth/tap/pinghaus
 
 Binaries are notarized zips from [pinghaus.dmalson.com/releases](https://pinghaus.dmalson.com/releases/).
 
-## Install CalSync
+## Install TenantCal
 
 Apple Silicon Mac, macOS 13 (Ventura) or later:
 
 ```bash
-brew install --cask sooth/tap/calsync
+brew install --cask sooth/tap/tenantcal
 ```
 
 Or:
 
 ```bash
 brew tap sooth/tap
-brew install --cask calsync
+brew install --cask tenantcal
 ```
 
 The app lands in `/Applications`. After install it keeps itself current via Sparkle
 (in-app updates). On first launch it registers as a login item and starts the
 menu-bar sync client.
+
+TenantCal was formerly CalSync. Existing `sooth/tap/calsync` installs keep working
+unchanged (same app, same updates) — no action needed.
 
 Binary downloads for the cask come from the public releases repo
 [`sooth/simple-meeting-recorder-releases`](https://github.com/sooth/simple-meeting-recorder-releases)
@@ -150,7 +153,7 @@ The app lands in `/Applications`. After install it keeps itself current via Spar
 
 ```bash
 brew uninstall --cask extractor
-brew uninstall --cask calsync
+brew uninstall --cask tenantcal
 brew uninstall --cask frame
 brew uninstall --cask simple-meeting-recorder
 # or, if on the beta channel:
@@ -161,7 +164,7 @@ Preferences only (does not delete user data under Application Support / Recordin
 
 ```bash
 brew uninstall --cask --zap extractor
-brew uninstall --cask --zap calsync
+brew uninstall --cask --zap tenantcal
 brew uninstall --cask --zap frame
 brew uninstall --cask --zap simple-meeting-recorder
 brew uninstall --cask --zap simple-meeting-recorder@beta
