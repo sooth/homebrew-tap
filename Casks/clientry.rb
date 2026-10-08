@@ -1,6 +1,6 @@
 cask "clientry" do
-  version "1.3"
-  sha256 "ac8e164bad3ea90e3d8a77949a6e497ea61757a36eadfa87e37bd53a460a56d2"
+  version "1.4"
+  sha256 "d23a139bb83369f7ebb544904364545d47cd367e69c83cb0d5a19c516e6e08c7"
 
   url "https://clientry.dmalson.com/releases/Clientry-#{version}.zip"
   name "Clientry"
