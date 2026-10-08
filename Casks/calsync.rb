@@ -1,6 +1,6 @@
 cask "calsync" do
-  version "1.21.4"
-  sha256 "af1703b4dbd343310e6ed7bf9ddb5b0c81e3b303baa1eb20ba96a1f94f57a618"
+  version "1.22.0"
+  sha256 "f5226e817b828dff94d22f45ceff8ce3ff7cd185d2d082335bf52286ef354a85"
 
   url "https://sync365cal.com/releases/CalSync-#{version}.zip"
   name "CalSync"
@@ -13,8 +13,8 @@ cask "calsync" do
   end
 
   auto_updates true
-  depends_on macos: :ventura
   depends_on arch: :arm64
+  depends_on macos: :ventura
 
   app "CalSync.app"
 

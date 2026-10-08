@@ -1,6 +1,6 @@
 cask "tenantcal" do
-  version "1.21.4"
-  sha256 "af1703b4dbd343310e6ed7bf9ddb5b0c81e3b303baa1eb20ba96a1f94f57a618"
+  version "1.22.0"
+  sha256 "f5226e817b828dff94d22f45ceff8ce3ff7cd185d2d082335bf52286ef354a85"
 
   url "https://sync365cal.com/releases/CalSync-#{version}.zip"
   name "TenantCal"
