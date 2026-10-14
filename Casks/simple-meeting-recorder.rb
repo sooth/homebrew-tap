@@ -1,6 +1,6 @@
 cask "simple-meeting-recorder" do
-  version "1.15.1"
-  sha256 "4ac323ac82fa33744dda22d023de1f738ff6ab27d8393994c65af095708e73c5"
+  version "1.16.0"
+  sha256 "070721a54d3b32041380aaf46d9587bda6f7df5a7bd475221deceb3d6c642ef3"
 
   url "https://github.com/sooth/simple-meeting-recorder-releases/releases/download/v#{version}/SimpleMeetingRecorder-#{version}.zip"
   name "Simple Meeting Recorder"
