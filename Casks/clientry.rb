@@ -9,7 +9,11 @@ cask "clientry" do
 
   depends_on macos: :sonoma
 
-  app "Clientry.app"
+  # ~/Applications unless --appdir is passed or set in HOMEBREW_CASK_OPTS: no admin
+  # password needed. An explicit --appdir sticks on reinstall.
+  appdir_chosen = cask.config.explicit.key?(:appdir) || cask.config.env.key?(:appdir)
+  app_root = appdir_chosen ? appdir : "#{Dir.home}/Applications"
+  app "Clientry.app", target: "#{app_root}/Clientry.app"
 
   zap trash: "~/Library/Preferences/com.clientry.app.plist"
 end

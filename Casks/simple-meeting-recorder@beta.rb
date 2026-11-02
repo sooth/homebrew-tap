@@ -13,38 +13,22 @@ cask "simple-meeting-recorder@beta" do
   end
 
   auto_updates true
-  depends_on macos: :sequoia
   depends_on arch: :arm64
+  depends_on macos: :sequoia
 
-  # Same .app path as the stable cask. Auto-replace so
-  #   brew install --cask sooth/tap/simple-meeting-recorder@beta
-  # works without a manual uninstall (conflicts_with would force that).
-  # Avoid nested `brew uninstall` (lock). Clear Caskroom + app directly.
-  preflight do
-    other = "simple-meeting-recorder"
-    other_room = HOMEBREW_PREFIX/"Caskroom"/other
-    this_room = HOMEBREW_PREFIX/"Caskroom/simple-meeting-recorder@beta"
-    candidates = [
-      Pathname.new(Dir.home)/"Applications/SimpleMeetingRecorder.app",
-      Pathname("/Applications/SimpleMeetingRecorder.app"),
-    ]
+  # ~/Applications unless --appdir is passed or set in HOMEBREW_CASK_OPTS: no admin
+  # password, and in-app updates never prompt. An explicit --appdir sticks on reinstall.
+  appdir_chosen = cask.config.explicit.key?(:appdir) || cask.config.env.key?(:appdir)
+  app_root = appdir_chosen ? appdir : "#{Dir.home}/Applications"
+  app "SimpleMeetingRecorder.app", target: "#{app_root}/SimpleMeetingRecorder.app"
 
-    if other_room.directory?
-      ohai "Switching to beta: removing stable cask #{other}"
-      candidates.each { |app| FileUtils.rm_r(app) if app.exist? }
-      FileUtils.rm_r(other_room)
-    elsif !this_room.directory?
-      orphan = candidates.find(&:exist?)
-      if orphan
-        ohai "Removing existing #{orphan.basename} so beta can install"
-        FileUtils.rm_r(orphan)
-      end
-    end
+  # One SimpleMeetingRecorder.app: clear the other channel (same app) and any manual
+  # copy in either Applications folder.
+  preflight_steps do
+    remove ["/Applications/SimpleMeetingRecorder.app", "~/Applications/SimpleMeetingRecorder.app"],
+           recursive: true, sudo: :if_needed
+    remove "{{HOMEBREW_PREFIX}}/Caskroom/simple-meeting-recorder", recursive: true
   end
-
-  # Prefer user Applications (no admin):
-  #   brew install --cask --appdir=~/Applications sooth/tap/simple-meeting-recorder@beta
-  app "SimpleMeetingRecorder.app"
 
   zap trash: "~/Library/Preferences/com.davidmalson.SimpleMeetingRecorder.plist"
 end

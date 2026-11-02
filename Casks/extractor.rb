@@ -7,19 +7,19 @@ cask "extractor" do
   desc "Archive Outlook mail and Teams chats from a signed-in session"
   homepage "https://extractor.dmalson.com/"
 
-  depends_on macos: :ventura
   depends_on arch: :arm64
+  depends_on macos: :ventura
 
-  app "Extractor.app"
-  binary "#{appdir}/Extractor.app/Contents/MacOS/extractor"
+  # ~/Applications unless --appdir is passed or set in HOMEBREW_CASK_OPTS: no admin
+  # password needed. An explicit --appdir sticks on reinstall.
+  appdir_chosen = cask.config.explicit.key?(:appdir) || cask.config.env.key?(:appdir)
+  app_root = appdir_chosen ? appdir : "#{Dir.home}/Applications"
+  app "Extractor.app", target: "#{app_root}/Extractor.app"
+  binary "#{app_root}/Extractor.app/Contents/MacOS/extractor"
 
-  # Clear a manual / non-cask install so brew can land (same .app path).
-  preflight do
-    app = Pathname("/Applications/Extractor.app")
-    next unless app.exist?
-
-    ohai "Removing existing #{app.basename} so Homebrew can install"
-    FileUtils.rm_r(app)
+  # Clear a manual / non-cask copy in either Applications folder so brew can land.
+  preflight_steps do
+    remove ["/Applications/Extractor.app", "~/Applications/Extractor.app"], recursive: true, sudo: :if_needed
   end
 
   zap trash: "~/Library/Preferences/com.dmalson.Extractor.plist"
