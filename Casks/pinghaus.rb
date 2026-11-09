@@ -1,6 +1,6 @@
 cask "pinghaus" do
-  version "1.2.0"
-  sha256 "12e993b41154d58c79160bf60be1346da1e254ca963910820241c5a229a38f51"
+  version "1.3.0"
+  sha256 "d2804248e01d6965ae48d19c2f806e4812476c4583a25adcb1f6e588de50b120"
 
   url "https://pinghaus.dmalson.com/releases/Pinghaus-#{version}.zip"
   name "Pinghaus"
